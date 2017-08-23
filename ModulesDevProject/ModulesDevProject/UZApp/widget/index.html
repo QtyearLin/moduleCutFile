@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Module Develop</title>
+<meta charset="utf-8">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<style type="text/css">
+	html,body{
+		height: 100%
+	}
+	body{
+		background-color: #fff;
+	    margin: 0;
+	}
+	#wrap{
+	    height: 100%;
+	    position: relative;
+	}
+	#header{
+		padding-top: 20px;
+		background-color: #5082c2;
+		height: 44px;
+	    position: relative;
+	}
+	#header h1{
+	    font-size: 20px; 
+	    height: 44px; 
+	    line-height: 44px; 
+	    margin: 0em; 
+	    color: #fff;
+		margin-left: 100px;
+		margin-right: 100px;
+		text-align: center;
+	}
+    #main{
+        display: block;
+    }
+    a.button{
+        display: -webkit-box;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        height: 36px;
+        margin: 8px;
+        background-color: rgba(240,240,240,1.0);
+        border-color: rgba(220,220,220,1.0);
+        border-width: 2px;
+        border-style: solid;
+	}
+    a.active{
+        background-color: rgba(240,240,240,0.6);
+	}
+</style>
+</head>
+<body>
+	<div id="wrap">
+	    <header id="header">
+	    	<h1 id="title">模块开发</h1>
+	    </header>
+	    <div id="main">
+            <a class="button" tapmode="active" >显示对话框</a>
+        </div>
+       <div id="test">
+             <a class="button" tapmode="active" onclick="cutTest()">cut test</a>
+           </div>
+    </div>
+</body>
+<script>
+
+
+function cutTest() {
+//由于ios沙盒机制 测试代码中此path 是无效的 测试包中代码已设置path= 沙盒路径+ 文件（需要明名为a)，测试时需要把视频文件拖入path路径
+//startCutFile 方法中的  
+var path = "/Users/tyearlin/Library/Developer/CoreSimulator/Devices/D5BAFAA4-2899-4A7A-BAC5-0A38DB62BCC7/data/Containers/Data/Application/8830BFF7-67D9-401D-BE42-F30B62218F9B/a";
+                 var demo = api.require('moduleCutFile');
+                 demo.cutFile({
+                              test:false,
+                              cbId:1,
+                        
+                              path:path,
+                              },function(ret, err){
+                              var msg = "msg:"+ret.msg+ret.code;
+                              console.log("js获取的回调切片文件列表"+ret.cutFiles);
+                              api.toast({
+                                        msg: msg
+                                        });
+                              });
+                 }
+         
+
+
+function apiready() {
+    
+}
+</script>
+</html>
